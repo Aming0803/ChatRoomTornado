@@ -18,7 +18,7 @@ class UserDao(object):
 
     def create_user(self, user_do):
         try:
-            self.get_query.add(user_do)
+            self.db.add(user_do)
             self.db.commit()
             return True, ''
         except Exception, e:
@@ -35,3 +35,9 @@ class UserDao(object):
         user = self.get_user_by_uuid(user_id)
         user.deleted = True
         self.db.commit()
+
+    def get_user_by_name_and_pwd(self, name, pwd):
+        user = self.get_query.filter_by(user_name=name, user_pwd=pwd, deleted=False).first()
+        if not user:
+            return False, ''
+        return True, user

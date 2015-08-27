@@ -20,6 +20,7 @@
 
     <script src="{{ static_url('js/jquery-1.11.0.min.js') }}"></script>
     <script src="{{ static_url('js/bootstrap.min.js') }}"></script>
+    <script src="{{ static_url('js/form_validate.js') }}"></script>
 
   </head>
 
@@ -27,12 +28,13 @@
 
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" action="/login" method="post" onsubmit="return form_validate_login()">
+          {{ xsrf_form_html() }}
         <h2 class="form-signin-heading welcome">欢迎登陆MM聊天室</h2>
-        <label for="inputEmail" class="sr-only">用户名</label>
-        <input id="inputEmail" class="form-control" placeholder="用户名" required autofocus>
-        <label for="inputPassword" class="sr-only">密码</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <label for="user_name" class="sr-only">用户名</label>
+        <input id="user_name" name="user_name" class="form-control" placeholder="用户名" required autofocus>
+        <label for="user_pwd" class="sr-only">密码</label>
+        <input type="password" name="user_pwd" id="user_pwd" class="form-control" placeholder="密码" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> 记住我
@@ -40,10 +42,11 @@
         </div>
         <!--<a class="btn btn-lg btn-primary btn-block" type="submit">登陆</a>-->
         <div>
-              <a type="button" class="btn btn-primary login_btn">登陆</a>
+              <button type="submit" class="btn btn-primary login_btn">登陆</button>
                 <!-- Indicates a successful or positive action -->
               <a href="/register" type="button" class="btn btn-success login_btn">注册</a>
         </div>
+        <div><h4 class="error">{{ msg }}</h4></div>
       </form>
 
     </div> <!-- /container -->

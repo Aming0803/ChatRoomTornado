@@ -1,7 +1,14 @@
 #coding=utf-8
+import platform
+
 
 #mysql
-DB_CONNECT_STRING = 'mysql://root:root@localhost/chatroom?charset=utf8'
+if platform.system() == 'Linux':
+    #under ubuntu
+    DB_CONNECT_STRING = 'mysql://root:root@localhost/chatroom?charset=utf8'
+if platform.system() == 'Darwin':
+    #under mac
+    DB_CONNECT_STRING = 'mysql://root:ysletmein@localhost/chatroom?charset=utf8'
 
 #redis
 REDIS_PORT = 6379
