@@ -37,6 +37,10 @@ class UserService(object):
             return False, e
 
     def create_uuid(self):
-        return '%.0f'% time.time()*1000000
+        return '%.0f'% (time.time()*1000000)
+
+    def get_user_by_name_and_pwd(self, name, pwd):
+        user_dao = UserDao(self.db)
+        return user_dao.get_user_by_name_and_pwd(name, pwd)
 
 

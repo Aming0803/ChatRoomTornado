@@ -20,6 +20,10 @@ class BaseHandler(web.RequestHandler):
     def redis(self):
         return self.application.redis
 
+    def get_current_user(self):
+        return self.get_secure_cookie('user_id')
+
+
 class Application(web.Application):
     def __init__(self, handlers, **settings):
         super(Application, self).__init__(handlers, **settings)

@@ -4,11 +4,33 @@
 .welcome{
     text-align:center;
 }
-
 .register{
     width:800px;
     margin-top:50px;
 }
 .p_image{
   padding-left:2px;
+}
+.error {
+    text-align:center;
+    color:red;
+}
+.chat_left{
+    background:#eee;
+    border-right:1px solid;
+}
+.height1{
+    height:80px;
+    border-bottom:1px solid;
+}
+.height2{
+    height:150px;
+    border-bottom:1px solid;
+}
+.height3{
+    height:500px;
+    border-bottom:1px solid;
+}
+.notice{
+    margin-top:5px;
 }
