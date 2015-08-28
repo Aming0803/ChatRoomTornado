@@ -1,7 +1,7 @@
 #coding=utf-8
 __author__ = 'wan'
 from models.user_do import UserDO
-from sqlalchemy import and_
+from sqlalchemy import and_, desc
 
 import logging
 log = logging.getLogger(__file__)
@@ -29,7 +29,7 @@ class UserDao(object):
         return self.get_query.filter_by(and_(id=id, deleted=False)).first()
 
     def get_user_by_uuid(self, user_id):
-        return self.get_query.filter_by(and_(id=user_id, deleted=False)).first()
+        return self.get_query.filter(and_(UserDO.user_id==user_id, UserDO.deleted==0)).first()
 
     def delete_user(self, user_id):
         user = self.get_user_by_uuid(user_id)
@@ -41,3 +41,6 @@ class UserDao(object):
         if not user:
             return False, ''
         return True, user
+
+    def get_all_user_by_order(self):
+        return self.get_query.order_by(desc(UserDO.is_active)).all()

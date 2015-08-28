@@ -43,4 +43,6 @@ class UserService(object):
         user_dao = UserDao(self.db)
         return user_dao.get_user_by_name_and_pwd(name, pwd)
 
-
+    def get_all_user_order_by_active(self):
+        user_dao = UserDao(self.db)
+        return user_dao.get_all_user_by_order()

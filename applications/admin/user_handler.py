@@ -4,6 +4,11 @@ from services.admin.user_service import UserService
 import hashlib
 
 
+class IndexHandler(BaseHandler):
+    def get(self):
+        return self.redirect('/login')
+
+
 class LoginHandler(BaseHandler):
 
     def get(self):

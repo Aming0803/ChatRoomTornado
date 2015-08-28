@@ -27,7 +27,7 @@ class BaseHandler(web.RequestHandler):
 class Application(web.Application):
     def __init__(self, handlers, **settings):
         super(Application, self).__init__(handlers, **settings)
-        engine = create_engine(DB_CONNECT_STRING, echo=True)
+        engine = create_engine(DB_CONNECT_STRING, echo=False)
         db_session = sessionmaker(bind=engine)
         self.db = db_session()
         self.redis = RedisCacheManager()._con
