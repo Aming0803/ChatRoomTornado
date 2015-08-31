@@ -97,8 +97,17 @@ class RegisterHandler(BaseHandler):
 
 class LogoutHandler(BaseHandler):
     def get(self):
+        """
+        退出清除缓存的同时，redis在线人数减1
+        :return:
+        """
         self.clear_cookie('user_id')
+        self.decr_active_count()
         return self.redirect(self.get_login_url())
+
+    def decr_active_count(self):
+        redis_ser = RedisCacheManager()
+        redis_ser.decr('active_count')
 
 
 
