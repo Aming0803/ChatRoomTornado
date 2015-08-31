@@ -12,7 +12,7 @@ class UserService(object):
     """ 用户的service层 """
     def __init__(self, db):
         self.db = db
-
+        self.dao = UserDao(self.db)
     def get_user_by_id(self, id):
         user_dao = UserDao(self.db)
         return user_dao.get_user_by_id(id)
@@ -46,3 +46,9 @@ class UserService(object):
     def get_all_user_order_by_active(self):
         user_dao = UserDao(self.db)
         return user_dao.get_all_user_by_order()
+
+    def get_user_count(self):
+        return self.dao.get_user_count()
+
+    def get_user_count_by_active(self):
+        return self.dao.get_user_count_by_active()

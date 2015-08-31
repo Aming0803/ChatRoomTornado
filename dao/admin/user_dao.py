@@ -1,7 +1,7 @@
 #coding=utf-8
 __author__ = 'wan'
 from models.user_do import UserDO
-from sqlalchemy import and_, desc
+from sqlalchemy import and_, desc, func
 
 import logging
 log = logging.getLogger(__file__)
@@ -44,3 +44,9 @@ class UserDao(object):
 
     def get_all_user_by_order(self):
         return self.get_query.order_by(desc(UserDO.is_active)).all()
+
+    def get_user_count(self):
+        return self.db.query(func.count(UserDO.id))
+
+    def get_user_count_by_active(self):
+        return self.db.query(func.count('*')).filter(UserDO.is_active==True).scalar()

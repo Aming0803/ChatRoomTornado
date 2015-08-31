@@ -1,0 +1,16 @@
+﻿
+
+<div class="heading">
+      联系人({{ active_count }}/{{ total_count }})
+</div>
+<ul>
+    {% for u in users %}
+      <li>
+        {% if u.is_active %}
+        <a href="/single_chat" style="color:red;"><img width="30" height="30" src="{{ u.avatar }}" />{{ u.user_name }}</a>
+        {% else %}
+        <a href="/single_chat"><img width="30" height="30" src="{{ u.avatar }}" />{{ u.user_name }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+</ul>

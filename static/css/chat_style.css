@@ -1689,6 +1689,11 @@ th:active {
   padding: 0 0 102px 222px;
   position: relative;
   background-color: #f2f2f2; }
+.widget-container.single {
+  height: 800px;
+  padding: 0 0 52px 22px;
+  position: relative;
+  background-color: #f2f2f2; }
   .widget-container.chat-page .contact-list {
     position: absolute;
     top: 0;
