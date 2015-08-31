@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9e5341c-c4cc-4c44-be1e-b520e6513161" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/chat.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/chat_style.css" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatlist.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/base.py" afterPath="$PROJECT_DIR$/common/base.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/admin/chat_handler.py" afterPath="$PROJECT_DIR$/applications/admin/chat_handler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/register.html" afterPath="$PROJECT_DIR$/templates/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/style.css" afterPath="$PROJECT_DIR$/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/url.py" afterPath="$PROJECT_DIR$/applications/url.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/admin/user_dao.py" afterPath="$PROJECT_DIR$/dao/admin/user_dao.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/admin/user_handler.py" afterPath="$PROJECT_DIR$/applications/admin/user_handler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/admin/user_service.py" afterPath="$PROJECT_DIR$/services/admin/user_service.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="b9e5341c-c4cc-4c44-be1e-b520e6513161" name="Default" comment="" />
     <ignored path="ChatRoomTornado.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -629,7 +616,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24960506" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
