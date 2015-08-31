@@ -5,6 +5,7 @@ from common.base import BaseHandler
 from services.admin.user_service import UserService
 from tornado.websocket import WebSocketHandler
 from common.redis_cache import RedisCacheManager
+from tornado import gen
 import json
 
 class ChatHandler(BaseHandler):
@@ -36,7 +37,6 @@ class ChatGetUserCount(BaseHandler):
     def get(self):
         redis_ser = RedisCacheManager()
         all_users = self.get_user_info_from_mysql()
-
         total_count = redis_ser.get('total_count')
         active_count = redis_ser.get('active_count')
 

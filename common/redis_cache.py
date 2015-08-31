@@ -13,7 +13,7 @@ class RedisCacheManager(object):
 
     @property
     def _con(self):
-        pool = redis.ConnectionPool(REDIS_HOST, REDIS_PORT)
+        pool = redis.ConnectionPool(host=REDIS_HOST, port=REDIS_PORT, max_connections=1024, db=1)
         return redis.Redis(connection_pool=pool)
 
     def set(self, key, value):
@@ -30,6 +30,9 @@ class RedisCacheManager(object):
 
     def incr(self, key, amount=1):
         return self._con.incr(key, amount)
+
+    def decr(self, key, amount=1):
+        return self._con.decr(key, amount)
 
     def h_set(self, name, key, data):
         """
@@ -57,3 +60,6 @@ class RedisCacheManager(object):
 
     def hm_get(self, key):
         return self._con.hgetall(key)
+
+    def delete_db(self):
+        return self._con.flushdb()

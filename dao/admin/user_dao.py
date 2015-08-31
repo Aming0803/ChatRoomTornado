@@ -46,7 +46,7 @@ class UserDao(object):
         return self.get_query.order_by(desc(UserDO.is_active)).all()
 
     def get_user_count(self):
-        return self.db.query(func.count(UserDO.id))
+        return self.db.query(UserDO.user_id).count()
 
     def get_user_count_by_active(self):
         return self.db.query(func.count('*')).filter(UserDO.is_active==True).scalar()
