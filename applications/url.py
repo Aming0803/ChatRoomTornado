@@ -2,7 +2,7 @@
 __author__ = 'wan'
 
 from admin.user_handler import LoginHandler, RegisterHandler, IndexHandler
-from admin.chat_handler import ChatHandler
+from admin.chat_handler import ChatHandler, OneToOneChaHandler, ChatGetUserCount
 
 handlers = [
     (r'/', IndexHandler),
@@ -10,5 +10,8 @@ handlers = [
     (r'/register', RegisterHandler),
 
     (r'/chat', ChatHandler),
+    (r'/single_chat', OneToOneChaHandler),
+
+    (r'/get_count', ChatGetUserCount),
 
 ]
