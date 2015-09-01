@@ -5,7 +5,8 @@ from common.base import BaseHandler
 from services.admin.user_service import UserService
 from tornado.websocket import WebSocketHandler
 from common.redis_cache import RedisCacheManager
-from tornado import gen
+from tornado.gen import coroutine
+from tornado.concurrent import Future
 import json
 
 class ChatHandler(BaseHandler):
@@ -34,6 +35,7 @@ class OneToOneChaHandler(BaseHandler):
 class ChatGetUserCount(BaseHandler):
     """ 聊天室获取总人数和在线的人数 """
     @authenticated
+    @coroutine
     def get(self):
         redis_ser = RedisCacheManager()
         all_users = self.get_user_info_from_mysql()
@@ -73,3 +75,27 @@ class ChatGetUserCount(BaseHandler):
         user_ser = UserService(self.db)
         return user_ser.get_user_count_by_active()
 
+
+class ChatUserCountManger(object):
+
+    def get_user_info_from_mysql(self):
+        user_ser = UserService(self.db)
+        all_user = user_ser.get_all_user_order_by_active()
+        return all_user
+        # user_list = []
+        # for u in all_user:
+        #     user_info = {}
+        #     user_info[u.user_name] = u.user_name
+        #     user_info[u.user_id] = u.user_id
+        #     user_info[u.avatar] = u.avatar
+        #     user_list.append(user_info)
+
+        # return json.dumps(user_list)
+
+    def get_user_count(self):
+        user_ser = UserService(self.db)
+        return user_ser.get_user_count()
+
+    def get_active_count(self):
+        user_ser = UserService(self.db)
+        return user_ser.get_user_count_by_active()
