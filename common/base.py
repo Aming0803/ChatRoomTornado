@@ -33,3 +33,12 @@ class Application(web.Application):
         self.redis = RedisCacheManager()._con
 
 
+class CountConfig(object):
+    def __init__(self):
+        """
+        用来判断在线人数和总人数是否发生了变化
+        :return:
+        """
+        self.is_count_change = False
+
+
