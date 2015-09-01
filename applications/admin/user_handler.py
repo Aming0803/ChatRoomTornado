@@ -2,6 +2,7 @@
 from common.base import BaseHandler
 from services.admin.user_service import UserService
 from common.redis_cache import RedisCacheManager
+from common import config
 import hashlib
 
 
@@ -52,6 +53,8 @@ class LoginHandler(BaseHandler):
 
         redis_ser.incr('active_count')
 
+        # config.IS_COUNT_CHANGE = True
+
     def get_active_user_count(self):
         user_ser = UserService(self.db)
         return user_ser.get_user_count_by_active()
@@ -75,7 +78,7 @@ class RegisterHandler(BaseHandler):
         if not success:
             return self.write('sorry,注册失败!')
 
-
+        self.incr_total_count()
         return self.redirect(self.get_login_url())
 
     def create_user(self, **kwargs):
@@ -89,6 +92,7 @@ class RegisterHandler(BaseHandler):
             redis_ser.set('total_count', self.get_total_count())
 
         redis_ser.incr('total_count')
+        # config.IS_COUNT_CHANGE = True
 
     def get_total_count(self):
         user_ser = UserService(self.db)
@@ -101,6 +105,9 @@ class LogoutHandler(BaseHandler):
         退出清除缓存的同时，redis在线人数减1
         :return:
         """
+        user_id = self.get_current_user()
+        self.update_user_active(user_id)
+
         self.clear_cookie('user_id')
         self.decr_active_count()
         return self.redirect(self.get_login_url())
@@ -108,6 +115,14 @@ class LogoutHandler(BaseHandler):
     def decr_active_count(self):
         redis_ser = RedisCacheManager()
         redis_ser.decr('active_count')
+
+        # config.IS_COUNT_CHANGE = True
+
+    def update_user_active(self, user_id):
+        user_ser = UserService(self.db)
+        user = user_ser.get_user_by_uuid(user_id)
+        user.is_active = 0
+        self.db.commit()
 
 
 

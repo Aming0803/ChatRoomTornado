@@ -129,15 +129,15 @@
             <div class="widget-container scrollable chat chat-page">
               <div class="contact-list">
                 <div class="heading">
-                      联系人(15)
+                      联系人({{ data.active_count }}/{{ data.total_count }})
                 </div>
                 <ul>
-                    {% for u in users %}
+                    {% for u in data.users %}
                       <li>
                         {% if u.is_active %}
                         <a href="/single_chat" style="color:red;"><img width="30" height="30" src="{{ u.avatar }}" />{{ u.user_name }}</a>
                         {% else %}
-                        <a href="/single_chat"><img width="30" height="30" src="{{ static_url }}" />{{ u.user_name }}</a>
+                        <a href="/single_chat"><img width="30" height="30" src="{{ u.avatar }}" />{{ u.user_name }}</a>
                         {% endif %}
                       </li>
                     {% endfor %}

@@ -4,7 +4,7 @@ $(function(){
 
 //   setInterval(get_users_count(), 0);
    $(document).ready(function(){
-        get_users_count()
+        get_users_count();
    })
 })
 
@@ -16,11 +16,11 @@ function get_users_count(){
             success:function(data, textStatus){
                 $(".contact-list").html(data);
                 if (textStatus == "success") { // 请求成功
-                    get_users_count();
+                    setInterval(get_users_count(), 0);
                 }
             },
             error:function(XMLHttpRequest, textStatus, errorThrown){
-                get_users_count();
+                setInterval(get_users_count(),500);
             }
         })
    }
