@@ -7,6 +7,7 @@ from tornado.websocket import WebSocketHandler
 from common.redis_cache import RedisCacheManager
 from tornado.gen import coroutine
 from tornado.concurrent import Future
+from tornado.web import asynchronous
 from common import config
 import json
 
@@ -64,13 +65,14 @@ class OneToOneChaHandler(BaseHandler):
 class ChatGetUserCount(BaseHandler):
     """ 聊天室获取总人数和在线的人数 """
     @authenticated
+    # @asynchronous
     @coroutine
     def get(self):
         self.future = self.get_info()
         data = yield self.future
 
-        # if self.request.connection.stream.closed():
-        #     return
+        if self.request.connection.stream.closed():
+            return
         self.render('ajax/user_info.html', data=data)
 
     def on_connection_close(self):
@@ -99,7 +101,7 @@ class ChatGetUserCount(BaseHandler):
                 'all_users':self.get_all_user()
             }
             future.set_result(data)
-            config.IS_COUNT_CHANGE = False
+            # config.IS_COUNT_CHANGE = False
 
         return future
 
@@ -124,4 +126,14 @@ class ChatGetUserCount(BaseHandler):
     def get_active_count(self):
         user_ser = UserService(self.db)
         return user_ser.get_user_count_by_active()
+
+
+class ChatMorePHandler(BaseHandler):
+    """多人聊天"""
+    def get(self):
+        return self
+
+
+class ChatManager(object):
+    pass
 

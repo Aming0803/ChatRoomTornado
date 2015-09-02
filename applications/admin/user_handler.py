@@ -53,7 +53,7 @@ class LoginHandler(BaseHandler):
 
         redis_ser.incr('active_count')
 
-        # config.IS_COUNT_CHANGE = True
+        config.IS_COUNT_CHANGE = True
 
     def get_active_user_count(self):
         user_ser = UserService(self.db)
@@ -92,7 +92,7 @@ class RegisterHandler(BaseHandler):
             redis_ser.set('total_count', self.get_total_count())
 
         redis_ser.incr('total_count')
-        # config.IS_COUNT_CHANGE = True
+        config.IS_COUNT_CHANGE = True
 
     def get_total_count(self):
         user_ser = UserService(self.db)
@@ -116,7 +116,7 @@ class LogoutHandler(BaseHandler):
         redis_ser = RedisCacheManager()
         redis_ser.decr('active_count')
 
-        # config.IS_COUNT_CHANGE = True
+        config.IS_COUNT_CHANGE = True
 
     def update_user_active(self, user_id):
         user_ser = UserService(self.db)

@@ -19,6 +19,6 @@ REDIS_CELERY_BROKER = 'redis://127.0.0.1:6379/1'
 
 #人数是否发生了变化
 
-IS_COUNT_CHANGE = False
+IS_COUNT_CHANGE = True
 # conn = pymongo.Connection("localhost", 27017)
 # self.db = conn['mytest']					
