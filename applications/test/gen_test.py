@@ -14,7 +14,7 @@ def asyn_sum(a, b):
 
     def callback(a, b):
         print("calculating the sum of %d+%d:"%(a,b))
-        future.set_result(a+b)
+        # future.set_result(a+b)
         # return 1
     tornado.ioloop.IOLoop.instance().add_callback(callback, a, b)
 
@@ -23,8 +23,13 @@ def asyn_sum(a, b):
     print("after yielded")
     print("the %d+%d=%d"%(a, b, result))
 
+def future_done(future):
+    return future.result()
+
 def main():
-    asyn_sum(2,3)
+    f = asyn_sum(2,3)
+    print f
+    f.add_done_callback(future_done)
     tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":

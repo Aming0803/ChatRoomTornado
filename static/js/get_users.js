@@ -16,11 +16,13 @@ function get_users_count(){
             success:function(data, textStatus){
                 $(".contact-list").html(data);
                 if (textStatus == "success") { // 请求成功
+                    console.log('success');
                     setInterval(get_users_count(), 0);
                 }
             },
             error:function(XMLHttpRequest, textStatus, errorThrown){
-                setInterval(get_users_count(),500);
+                console.log('error');
+                setInterval(get_users_count(),100);
             }
         })
    }
