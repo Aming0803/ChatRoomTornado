@@ -10,6 +10,13 @@ from common.redis_cache import RedisCacheManager
 
 BaseModel = declarative_base()
 
+def connect_db():
+    engine = create_engine(DB_CONNECT_STRING, echo=False)
+    session = sessionmaker(bind=engine)
+    db = session()
+    return db
+
+DB = connect_db()
 
 class BaseHandler(web.RequestHandler):
     @property
@@ -27,18 +34,11 @@ class BaseHandler(web.RequestHandler):
 class Application(web.Application):
     def __init__(self, handlers, **settings):
         super(Application, self).__init__(handlers, **settings)
-        engine = create_engine(DB_CONNECT_STRING, echo=False)
-        db_session = sessionmaker(bind=engine)
-        self.db = db_session()
+        self.db = DB
         self.redis = RedisCacheManager()._con
 
 
-class CountConfig(object):
-    def __init__(self):
-        """
-        用来判断在线人数和总人数是否发生了变化
-        :return:
-        """
-        self.is_count_change = False
+
+
 
 

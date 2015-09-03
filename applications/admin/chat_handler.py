@@ -8,8 +8,8 @@ from common.redis_cache import RedisCacheManager
 from tornado.gen import coroutine
 from tornado.concurrent import Future
 from tornado.web import asynchronous
-from common import config
-import json
+from common.chat_tool import ChatManager
+
 
 class ChatHandler(BaseHandler):
     """ 聊天室 """
@@ -65,67 +65,18 @@ class OneToOneChaHandler(BaseHandler):
 class ChatGetUserCount(BaseHandler):
     """ 聊天室获取总人数和在线的人数 """
     @authenticated
-    # @asynchronous
     @coroutine
     def get(self):
-        self.future = self.get_info()
+        self.future = Future()
+        ChatManager().count_waits.add(self.future)
         data = yield self.future
-
         if self.request.connection.stream.closed():
             return
         self.render('ajax/user_info.html', data=data)
 
     def on_connection_close(self):
-        pass
-
-    def get_info(self):
-        redis_ser = RedisCacheManager()
-        # pipe = redis_ser._con.pipeline()
-        future = Future()
-
-        # total_count = redis_ser.get('total_count')
-        # active_count = redis_ser.get('active_count')
-
-        if config.IS_COUNT_CHANGE:
-        # redis_ser._con.flushdb()
-        # if not total_count or not active_count:
-        #     pipe.set('total_count', self.get_user_count())
-        #     pipe.set('active_count', self.get_active_count())
-        #     pipe.execute()
-            total_count = redis_ser.get('total_count')
-            active_count = redis_ser.get('active_count')
-
-            data = {
-                'total_count':total_count,
-                'active_count':active_count,
-                'all_users':self.get_all_user()
-            }
-            future.set_result(data)
-            # config.IS_COUNT_CHANGE = False
-
-        return future
-
-    def get_all_user(self):
-        user_ser = UserService(self.db)
-        all_user = user_ser.get_all_user_order_by_active()
-        return all_user
-        # user_list = []
-        # for u in all_user:
-        #     user_info = {}
-        #     user_info[u.user_name] = u.user_name
-        #     user_info[u.user_id] = u.user_id
-        #     user_info[u.avatar] = u.avatar
-        #     user_list.append(user_info)
-
-        # return json.dumps(user_list)
-
-    def get_user_count(self):
-        user_ser = UserService(self.db)
-        return user_ser.get_user_count()
-
-    def get_active_count(self):
-        user_ser = UserService(self.db)
-        return user_ser.get_user_count_by_active()
+        ChatManager().count_waits.remove(self.future)
+        self.future.set_result([])
 
 
 class ChatMorePHandler(BaseHandler):
@@ -134,6 +85,5 @@ class ChatMorePHandler(BaseHandler):
         return self
 
 
-class ChatManager(object):
-    pass
+
 

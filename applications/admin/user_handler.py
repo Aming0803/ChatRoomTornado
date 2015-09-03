@@ -2,7 +2,7 @@
 from common.base import BaseHandler
 from services.admin.user_service import UserService
 from common.redis_cache import RedisCacheManager
-from common import config
+from common.chat_tool import ChatManager
 import hashlib
 
 
@@ -35,7 +35,7 @@ class LoginHandler(BaseHandler):
 
         self.incr_active_count()
         self.make_cookies(user)
-
+        self.set_future_result()
         return self.redirect('/chat')
 
     def get_user_by_name_and_pwd(self, user_name, user_pwd):
@@ -53,12 +53,19 @@ class LoginHandler(BaseHandler):
 
         redis_ser.incr('active_count')
 
-        config.IS_COUNT_CHANGE = True
-
     def get_active_user_count(self):
         user_ser = UserService(self.db)
         return user_ser.get_user_count_by_active()
 
+    def set_future_result(self):
+        """
+        给各个协程赋值
+        :return:
+        """
+        chat = ChatManager()
+        for future in chat.count_waits:
+            chat.get_info(future)
+        chat.count_waits = set()
 
 class RegisterHandler(BaseHandler):
 
@@ -79,6 +86,7 @@ class RegisterHandler(BaseHandler):
             return self.write('sorry,注册失败!')
 
         self.incr_total_count()
+        self.set_future_result()
         return self.redirect(self.get_login_url())
 
     def create_user(self, **kwargs):
@@ -92,11 +100,20 @@ class RegisterHandler(BaseHandler):
             redis_ser.set('total_count', self.get_total_count())
 
         redis_ser.incr('total_count')
-        config.IS_COUNT_CHANGE = True
 
     def get_total_count(self):
         user_ser = UserService(self.db)
         return user_ser.get_user_count()
+
+    def set_future_result(self):
+        """
+        给各个协程赋值
+        :return:
+        """
+        chat = ChatManager()
+        for future in chat.count_waits:
+            chat.get_info(future)
+        chat.count_waits = set()
 
 
 class LogoutHandler(BaseHandler):
@@ -110,13 +127,13 @@ class LogoutHandler(BaseHandler):
 
         self.clear_cookie('user_id')
         self.decr_active_count()
+        self.set_future_result()
+
         return self.redirect(self.get_login_url())
 
     def decr_active_count(self):
         redis_ser = RedisCacheManager()
         redis_ser.decr('active_count')
-
-        config.IS_COUNT_CHANGE = True
 
     def update_user_active(self, user_id):
         user_ser = UserService(self.db)
@@ -124,5 +141,14 @@ class LogoutHandler(BaseHandler):
         user.is_active = 0
         self.db.commit()
 
+    def set_future_result(self):
+        """
+        给各个协程赋值
+        :return:
+        """
+        chat = ChatManager()
+        for future in chat.count_waits:
+            chat.get_info(future)
+        chat.count_waits = set()
 
 
