@@ -100,3 +100,15 @@
     height:66px;
     line-height:66px;
 }
+.heading-right{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    z-index: 10;
+    height:50px;
+    padding:15px;15px;
+
+}
+.a-home{
+    padding-right:3px;
+}

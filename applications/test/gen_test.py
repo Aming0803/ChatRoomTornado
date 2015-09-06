@@ -21,18 +21,19 @@ def asyn_sum(a, b):
     result = yield future
 
     print("after yielded")
-    print("the %d+%d=%d"%(a, b, result))
+    print result
 
 def future_done(future):
-    count = 0
-    if count == 2:
-        future.set_result(count)
-    tornado.ioloop.IOLoop.instance().add_callback(future_done, future)
-    count += 1
+    data = {'a':1}
+    future.set_result(data)
+    # count = 0
+    # if count == 2:
+    #     future.set_result(count)
+    # tornado.ioloop.IOLoop.instance().add_callback(future_done, future)
+    # count += 1
 
 def main():
     f = asyn_sum(2,3)
-    print f
     tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":

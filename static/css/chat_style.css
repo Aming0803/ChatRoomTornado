@@ -932,9 +932,9 @@ th:active {
     position: relative;
     height: 400px;
     padding-top: 50px; }
-    .widget-container.scrollable.chat-home {
-      height: 427px; }
-    .widget-container.scrollable .heading {
+  .widget-container.scrollable.chat-home {
+    height: 427px; }
+  .widget-container.scrollable .heading {
       position: absolute;
       top: 0;
       left: 0;
@@ -948,7 +948,7 @@ th:active {
       -webkit-overflow-scrolling: touch; }
 
 .padded {
-  padding: 15px; }
+  padding: 50px 15px 10px 15px; }
 
 /*----------------------------------------------------------------------------------- */
 /*  Statistics Figures */
@@ -1602,7 +1602,7 @@ th:active {
       .chat .widget-content ul li {
         margin-bottom: 14px;
         padding-left: 40px;
-        padding-right: 80px;
+        padding-right: 580px;
         position: relative; }
         .chat .widget-content ul li:last-child {
           margin-bottom: 0; }
@@ -1643,7 +1643,7 @@ th:active {
             margin-bottom: 0; }
         .chat .widget-content ul li.current-user {
           padding-right: 40px;
-          padding-left: 80px; }
+          padding-left: 580px; }
           .chat .widget-content ul li.current-user img {
             right: 0;
             left: auto; }

@@ -52,3 +52,19 @@ class UserService(object):
 
     def get_user_count_by_active(self):
         return self.dao.get_user_count_by_active()
+
+    def get_name_by_user_id(self, user_id):
+        user = self.get_user_by_uuid(user_id)
+        try:
+            user_name = user.user_name
+        except Exception,e:
+            user_name = None
+        return user_name
+
+    def get_avatar_by_user_id(self, user_id):
+        user = self.get_user_by_uuid(user_id)
+        try:
+            avatar = user.avatar
+        except Exception,e:
+            avatar = None
+        return avatar

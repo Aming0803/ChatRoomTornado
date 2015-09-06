@@ -75,54 +75,11 @@
                       </ul>
                   </li>
               </ul>
-                <!--<ul class="info">-->
-                    <!--<li>-->
-                        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
-                            <!--<img class="round" src="{{ static_url('images/y1.jpg') }}">万明明-->
-                            <!--&lt;!&ndash;<span class="glyphicon glyphicon-menu-up"></span>&ndash;&gt;-->
-                            <!--<span class="glyphicon glyphicon-menu-down"></span>-->
-                        <!--</a>-->
-                        <!--<ul class="dropdown-menu down">-->
-                          <!--<li>-->
-                              <!--<a href="#">-->
-                                  <!--<span class="glyphicon glyphicon-cog"></span>账户设置-->
-                              <!--</a>-->
-                          <!--</li>-->
-                          <!--<li>-->
-                              <!--<a href="#">-->
-                                  <!--<span class="glyphicon glyphicon-lock"></span>修改密码-->
-                              <!--</a>-->
-                          <!--</li>-->
-                          <!--<li>-->
-                              <!--<a href="#">-->
-                                  <!--<span class="glyphicon glyphicon-off"></span>安全退出-->
-                              <!--</a>-->
-                          <!--</li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
-                    <!--&lt;!&ndash;<li>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<a class="dropdown-toggle" data-toggle="dropdown" href="#">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<span class="glyphicon glyphicon-cog sp"></span>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<p class="count">3</p>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                    <!--<li>-->
-                        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
-                            <!--<span class="glyphicon glyphicon-envelope sp"></span>-->
-                            <!--<p class="count">4</p>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!--</ul>-->
               </div>
           </div>
       </div>
       <!-- End Navigation -->
       <div class="container-fluid main-content">
-        <!--<div class="page-title">-->
-          <!--<h3>-->
-                <!--欢迎来到MM聊天室-->
-          <!--</h3>-->
-        <!--</div>-->
         <div class="row">
           <!-- Conversation -->
           <div class="col-lg-12">
@@ -135,9 +92,9 @@
                     {% for u in data.users %}
                       <li>
                         {% if u.is_active %}
-                        <a href="/single_chat" style="color:red;"><img width="30" height="30" src="{{ u.avatar }}" />{{ u.user_name }}</a>
+                        <a href="/single_chat?to_user_id={{ u.user_id }}" style="color:red;"><img width="30" height="30" src="{{ u.avatar }}" />{{ u.user_name }}</a>
                         {% else %}
-                        <a href="/single_chat"><img width="30" height="30" src="{{ u.avatar }}" />{{ u.user_name }}</a>
+                        <a href="/single_chat?to_user_id={{ u.user_id }}"><img width="30" height="30" src="{{ u.avatar }}" />{{ u.user_name }}</a>
                         {% endif %}
                       </li>
                     {% endfor %}
@@ -147,122 +104,45 @@
                 <!--<i class="icon-comments"></i>与 <a href="#">兰若</a> 的聊天<i class="icon-cog pull-right"></i><i class="icon-smile pull-right"></i>-->
               <!--</div>-->
               <div class="widget-content padded">
-                <ul>
-                  <li>
-                    <img width="30" height="30" src="picture/avatar-male.jpg" />
-                    <div class="bubble">
-                      <a class="user-name" href="#">兰若</a>
-                      <p class="message">
-                          你曾经深爱过的某人，无非也就是芸芸众生中的一个，只是爱由心生，自以为他/她会是今生最爱，当你感觉你爱她，你用心去爱就觉的他/她最珍贵，当万物归原，生命仍然继续，他/她无非也就是你生命中的一个过客。
-                      </p>
-                      <p class="time">
-                        <strong>今天 </strong>3:53 pm
-                      </p>
-                    </div>
-                  </li>
-                  <li class="current-user">
-                    <img width="30" height="30" src="picture/avatar-female.jpg" />
-                    <div class="bubble">
-                      <a class="user-name" href="#">王晓</a>
-                      <p class="message">
-                          我们根本无法确定哪一个才是今生最爱，如果不懂得去珍惜，你身边这个爱你的/你爱的人，在某一天，也会成为你身边的过客。
-                      </p>
-                      <p class="time">
-                        <strong>今天 </strong>3:53 pm
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <img width="30" height="30" src="picture/avatar-male.jpg" />
-                    <div class="bubble">
-                      <a class="user-name" href="#">兰若</a>
-                      <p class="message">
-                          找一个你爱的人不容易，找一个爱你的人也不容易。如果无法确定哪一个才是你最爱的人，何不在自己成为别人的爱人的时候珍惜这份感情？爱由心生，你告诉自己是爱他/她的，自然就可以爱上他/她。
-                      </p>
-                      <p class="time">
-                        <strong>今天 </strong>3:53 pm
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <img width="30" height="30" src="picture/avatar-male.jpg" />
-                    <div class="bubble">
-                      <a class="user-name" href="#">兰若</a>
-                      <p class="message">
-                          如果你爱的人不爱你，也请记得：爱由心生。是你太过于把目光集中在他/她身上了，试着放开视线焦点，你会发现光亮的蜡烛到处都有。
-                      </p>
-                      <p class="time">
-                        <strong>今天 </strong>3:53 pm
-                      </p>
-                    </div>
-                  </li>
-                  <li class="current-user">
-                    <img width="30" height="30" src="picture/avatar-female.jpg" />
-                    <div class="bubble">
-                      <a class="user-name" href="#">王晓</a>
-                      <p class="message">
-                          爱与不爱，无非也就是在一念之间。
-                      </p>
-                      <p class="time">
-                        <strong>今天 </strong>3:53 pm
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <img width="30" height="30" src="picture/avatar-male.jpg" />
-                    <div class="bubble">
-                      <a class="user-name" href="#">兰若</a>
-                      <p class="message">
-                          过去的事情过去的爱情，就让它过去吧，那只是我们生命的一部分，只是茫茫大海中的一滴水珠，只是漫漫苍弩中的一粒微尘。没有那些过去，也不会造就现在的你我。
-
-                      </p>
-                      <p class="time">
-                        <strong>今天 </strong>3:53 pm
-                      </p>
-                    </div>
-                  </li>
-                  <li class="current-user">
-                    <img width="30" height="30" src="picture/avatar-female.jpg" />
-                    <div class="bubble">
-                      <a class="user-name" href="#">王晓</a>
-                      <p class="message">
-                          珍惜当前，永远胜于三心二意。
-                      </p>
-                      <p class="time">
-                        <strong>今天 </strong>3:53 pm
-                      </p>
-                    </div>
-                  </li>
-                  <li class="current-user">
-                    <img width="30" height="30" src="picture/avatar-female.jpg" />
-                    <div class="bubble">
-                      <a class="user-name" href="#">王晓</a>
-                      <p class="message">
-                          >>>阅读《婚恋潜规则》<<<
-                      </p>
-                      <p class="time">
-                        <strong>今天 </strong>3:53 pm
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <img width="30" height="30" src="picture/avatar-male.jpg" />
-                    <div class="bubble">
-                      <a class="user-name" href="#">兰若</a>
-                      <p class="message">
-                          柯云路作品出版联络信箱：keyunlu@vip.sina.com
-                      </p>
-                      <p class="time">
-                        <strong>今天 </strong>3:53 pm
-                      </p>
-                    </div>
-                  </li>
-
+                <ul id="message_box">
+                {% if records %}
+                  {% for data in records %}
+                    {% if data.user_id == current_user %}
+                      <li>
+                        <img width="30" height="30" src="{{ data.avatar }}" />
+                        <div class="bubble">
+                          <a class="user-name" href="#">{{ data.name }}</a>
+                          <p class="message">
+                              {{ data.message }}
+                          </p>
+                          <p class="time">
+                            <strong>{{ data.time }}</strong>
+                          </p>
+                        </div>
+                      </li>
+                    {% else %}
+                      <li class="current-user">
+                        <img width="30" height="30" src="{{ data.avatar }}" />
+                        <div class="bubble">
+                          <a class="user-name" href="/single_chat?to_user_id={{ data.user_id }}">{{ data.name }}</a>
+                          <p class="message">
+                              {{ data.message }}
+                          </p>
+                          <p class="time">
+                            <strong>{{ data.time }}</strong>
+                          </p>
+                        </div>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
                 </ul>
               </div>
               <div class="post-message">
-                <input class="form-control" placeholder="输入需要发送的信息…" type="text"><input type="submit" value="发送">
+                <input style="width:800px; height:35px; text-align:35px;" id="message" placeholder="输入需要发送的信息…" type="text">
+                  <input style="width:100px; height:35px; text-align:35px;" id="messageform" type="button" value="发送">
               </div>
+                {{ xsrf_form_html() }}
             </div>
           </div>
         </div>

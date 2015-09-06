@@ -2,7 +2,8 @@
 __author__ = 'wan'
 
 from admin.user_handler import LoginHandler, RegisterHandler, IndexHandler, LogoutHandler
-from admin.chat_handler import ChatHandler, OneToOneChaHandler, ChatGetUserCount
+from admin.chat_handler import ChatHandler, OneToOneChaHandler, ChatGetUserCount, \
+    ChatNewMessageHandler, ChatUpdateMessageHandler, ChatOneToOneBySocketHandler
 
 handlers = [
     (r'/', IndexHandler),
@@ -14,5 +15,9 @@ handlers = [
     (r'/single_chat', OneToOneChaHandler),
 
     (r'/get_count', ChatGetUserCount),
+    (r'/message/new', ChatNewMessageHandler),
+    (r'/message/update', ChatUpdateMessageHandler),
+    (r'/websocket/single', ChatOneToOneBySocketHandler),
+
 
 ]

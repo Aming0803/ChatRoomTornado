@@ -63,3 +63,6 @@ class RedisCacheManager(object):
 
     def delete_db(self):
         return self._con.flushdb()
+
+    def save_in_list(self, key, data):
+        return self._con.rpush(key, data)
