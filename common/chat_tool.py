@@ -55,3 +55,8 @@ class MultPersonChatManger(object):
 
     def cancle_wait(self, future):
         self.waits.remove(future)
+
+
+class MessageRealTimePush(object):
+    def __init__(self):
+        pass

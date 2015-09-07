@@ -108,10 +108,10 @@
                 {% if records %}
                   {% for data in records %}
                     {% if data.user_id == current_user %}
-                      <li>
+                      <li class="current-user">
                         <img width="30" height="30" src="{{ data.avatar }}" />
                         <div class="bubble">
-                          <a class="user-name" href="#">{{ data.name }}</a>
+                          <a class="user-name">{{ data.name }}</a>
                           <p class="message">
                               {{ data.message }}
                           </p>
@@ -121,7 +121,7 @@
                         </div>
                       </li>
                     {% else %}
-                      <li class="current-user">
+                      <li>
                         <img width="30" height="30" src="{{ data.avatar }}" />
                         <div class="bubble">
                           <a class="user-name" href="/single_chat?to_user_id={{ data.user_id }}">{{ data.name }}</a>

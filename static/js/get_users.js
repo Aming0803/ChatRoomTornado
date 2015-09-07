@@ -78,3 +78,20 @@ function newMessage(message){
         }
     )
 }
+
+function MessageRealTimePush(){
+    $.ajax({
+            type:'GET',
+            url:'/message/update',
+            dataType:'html',
+            success:function(data, textStatus){
+                $("#message_box").append(data);
+                if (textStatus == "success") { // 请求成功
+                    setInterval(message_update(), 0);
+                }
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                setInterval(message_update(),500);
+            }
+        })
+}
