@@ -15,10 +15,13 @@
     <link href="{{ static_url('css/chat_style.css') }}" rel="stylesheet">
 
     <script src="{{ static_url('js/jquery-1.11.0.min.js') }}"></script>
+    <!--<script src="{{ static_url('js/jquery-1.8.3.min.js') }}"></script>-->
     <script src="{{ static_url('js/bootstrap.min.js') }}"></script>
+    <!--<script src="{{ static_url('js/jquery.messager.js') }}"></script>-->
 
     <script src="{{ static_url('js/tornado_ajax.js') }}"></script>
     <script src="{{ static_url('js/get_users.js') }}"></script>
+    <script src="{{ static_url('js/real_time_push.js') }}"></script>
 
     <script>
 
@@ -146,6 +149,15 @@
             </div>
           </div>
         </div>
+        <div id="message_push" class="message_push">
+            <div style="height:30px; width:100%;border:1px solid #ccc;font-size:15px;">
+                <span style="float:left;height:30px;line-height:30px;margin-left:3px;">消息提示!!!</span>
+                <span id="delete" style="float:right;height:30px;line-height:30px;width:10px;margin-right:2px;">x</span>
+            </div>
+            <div id="new_message">
+
+            </div>
+          </div>
       </div>
     </div>
   </body>

@@ -78,32 +78,34 @@
                 <ul id="message_box">
                  {% if records %}
                   {% for data in records %}
-                    {% if data.user_id == current_user %}
-                      <li>
-                        <img width="30" height="30" src="{{ data.avatar }}" />
-                        <div class="bubble">
-                          <a class="user-name" href="#">{{ data.name }}</a>
-                          <p class="message">
-                              {{ data.message }}
-                          </p>
-                          <p class="time">
-                            <strong>{{ data.time }}</strong>
-                          </p>
-                        </div>
-                      </li>
-                    {% else %}
-                      <li class="current-user">
-                        <img width="30" height="30" src="{{ data.avatar }}" />
-                        <div class="bubble">
-                          <a class="user-name" href="/single_chat?to_user_id={{ data.user_id }}">{{ data.name }}</a>
-                          <p class="message">
-                              {{ data.message }}
-                          </p>
-                          <p class="time">
-                            <strong>{{ data.time }}</strong>
-                          </p>
-                        </div>
-                      </li>
+                    {% if data %}
+                        {% if data.user_id == current_user %}
+                          <li class="current-user">
+                            <img width="30" height="30" src="{{ data.avatar }}" />
+                            <div class="bubble">
+                              <a class="user-name" href="#">{{ data.name }}</a>
+                              <p class="message">
+                                  {{ data.message }}
+                              </p>
+                              <p class="time">
+                                <strong>{{ data.time }}</strong>
+                              </p>
+                            </div>
+                          </li>
+                        {% else %}
+                          <li>
+                            <img width="30" height="30" src="{{ data.avatar }}" />
+                            <div class="bubble">
+                              <a class="user-name" href="/single_chat?to_user_id={{ data.user_id }}">{{ data.name }}</a>
+                              <p class="message">
+                                  {{ data.message }}
+                              </p>
+                              <p class="time">
+                                <strong>{{ data.time }}</strong>
+                              </p>
+                            </div>
+                          </li>
+                        {% endif %}
                     {% endif %}
                   {% endfor %}
                 {% endif %}

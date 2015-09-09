@@ -33,10 +33,19 @@ var updater = {
 
     start: function() {
         to_user_id = $("#other_user").val();
+        cur_user = $("#cur_user").val();
         var url = "ws://" + location.host + "/websocket/single?to_user_id="+to_user_id;
         updater.socket = new WebSocket(url);
         updater.socket.onmessage = function(event) {
-            $("#message_box").append(event.data);
+            var response = JSON.parse(event.data)
+            var li;
+            if(response.user != cur_user){
+                li = $('<li></li>');
+            }else{
+                var li = $('<li class="current-user"></li>');
+            }
+            li.html($(response.html));
+            $("#message_box").append(li);
         }
     },
 };

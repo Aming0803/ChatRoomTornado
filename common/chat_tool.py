@@ -7,8 +7,8 @@ from common.base import DB
 
 @singleton
 class ChatManager(object):
-    """获取在线人数"""
     def __init__(self):
+        """获取在线人数"""
         self.count_waits = set()
 
     def get_info(self, future):
@@ -57,6 +57,27 @@ class MultPersonChatManger(object):
         self.waits.remove(future)
 
 
+@singleton
 class MessageRealTimePush(object):
     def __init__(self):
-        pass
+        """
+        消息实时推送
+        :return:
+        """
+        self.waits = {}
+
+    def update_waits(self, future, user_id):
+
+        if user_id not in self.waits:
+            self.waits[user_id] = [future]
+        else:
+            self.waits[user_id].append(future)
+
+    def send_message(self, chat, user_id):
+        #每次队列中只有一个future,set_result后即删除
+        try:
+            future = self.waits[user_id].pop()
+            future.set_result(chat)
+        except Exception,e:
+            print e
+
